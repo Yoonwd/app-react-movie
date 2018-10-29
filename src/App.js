@@ -56,6 +56,7 @@ class App extends Component {
       <div className="App">
         {this.state.greetings}
         <br />
+        {/* movies 키값이 있냐? */}
         {this.state.movies ? this._renderMovies() : 'Loading...'}
       </div>
     );
