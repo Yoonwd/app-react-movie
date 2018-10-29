@@ -6,24 +6,7 @@ class App extends Component {
 
   state = {
     greetings: 'Hello react!',
-    movies: [
-      {
-        title: "React",
-        poster: "https://image.aladin.co.kr/product/15837/89/cover/k462533335_1.jpg"
-      },
-      {
-        title: "Node",
-        poster: "https://image.aladin.co.kr/product/15837/93/cover/k422533335_1.jpg"
-      },
-      {
-        title: "Refactor",
-        poster: "https://image.aladin.co.kr/product/16929/94/cover/k392534378_1.jpg"
-      },
-      {
-        title: "javascript",
-        poster: "https://image.aladin.co.kr/product/2252/42/cover/8960773867_1.jpg"
-      }
-    ]
+    
   }
 
   componentDidMount() {
@@ -36,24 +19,44 @@ class App extends Component {
     setTimeout(() => {
       this.setState({
         movies: [
-          ...this.state.movies,
+          {
+            title: "React",
+            poster: "https://image.aladin.co.kr/product/15837/89/cover/k462533335_1.jpg"
+          },
+          {
+            title: "Node",
+            poster: "https://image.aladin.co.kr/product/15837/93/cover/k422533335_1.jpg"
+          },
+          {
+            title: "Refactor",
+            poster: "https://image.aladin.co.kr/product/16929/94/cover/k392534378_1.jpg"
+          },
+          {
+            title: "javascript",
+            poster: "https://image.aladin.co.kr/product/2252/42/cover/8960773867_1.jpg"
+          },
           {
             title: "Learning JS",
             poster: "https://image.aladin.co.kr/product/11213/76/cover/8968483388_1.jpg"
           }
-
         ]
       })
-    }, 1500)
+    }, 2500)
+  }
+
+  _renderMovies = () => {
+    const movies = this.state.movies.map((movie, index) => {
+      return <Movie title={movie.title} poster={movie.poster} key={index}/> //movies 배열을 맵해서 새로운 컴포넌트를 만든다.
+    })
+    return movies
   }
 
   render() {
     return (
       <div className="App">
         {this.state.greetings}
-        {this.state.movies.map((movie, index) => {
-          return <Movie title={movie.title} poster={movie.poster} key={index}/> //movies 배열을 맵해서 새로운 컴포넌트를 만든다.
-        })}
+        <br />
+        {this.state.movies ? this._renderMovies() : 'Loading...'}
       </div>
     );
   }
