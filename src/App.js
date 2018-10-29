@@ -22,11 +22,25 @@ const movies = [
 ]
 
 class App extends Component {
+
+  state = {
+    greetings: 'Hello react!'
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        greetings: '안녕하세요 리액트!'
+      })
+    }, 5000)
+  }
+
   render() {
     return (
       <div className="App">
-        {movies.map(movie => {
-          return <Movie title={movie.title} poster={movie.poster} /> //movies 배열을 맵해서 새로운 컴포넌트를 만든다.
+        {this.state.greetings}
+        {movies.map((movie, index) => {
+          return <Movie title={movie.title} poster={movie.poster} key={index}/> //movies 배열을 맵해서 새로운 컴포넌트를 만든다.
         })}
       </div>
     );
