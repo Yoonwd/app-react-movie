@@ -31,7 +31,7 @@ export default class Movie extends Component {
     render() {
         console.log(this.props);
         return (
-            <img src={this.props.poster} />
+            <img src={this.props.poster} alt="poster"/>
         )
     }
  }
