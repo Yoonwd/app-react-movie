@@ -4,44 +4,13 @@ import Movie from './Movie';
 
 class App extends Component {
 
-  state = {
-    greetings: 'Hello react!',
-    
-  }
+  state = {}
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        greetings: '안녕하세요 리액트!'
-      })
-    }, 3000);
-
-    setTimeout(() => {
-      this.setState({
-        movies: [
-          {
-            title: "React",
-            poster: "https://image.aladin.co.kr/product/15837/89/cover/k462533335_1.jpg"
-          },
-          {
-            title: "Node",
-            poster: "https://image.aladin.co.kr/product/15837/93/cover/k422533335_1.jpg"
-          },
-          {
-            title: "Refactor",
-            poster: "https://image.aladin.co.kr/product/16929/94/cover/k392534378_1.jpg"
-          },
-          {
-            title: "javascript",
-            poster: "https://image.aladin.co.kr/product/2252/42/cover/8960773867_1.jpg"
-          },
-          {
-            title: "Learning JS",
-            poster: "https://image.aladin.co.kr/product/11213/76/cover/8968483388_1.jpg"
-          }
-        ]
-      })
-    }, 2500)
+    fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
+    .then(Myresponse => Myresponse.json())
+    .then(json => console.log(json))
+    .catch(err => console.log(err))
   }
 
   _renderMovies = () => {
@@ -54,8 +23,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.greetings}
-        <br />
         {/* movies 키값이 있냐? */}
         {this.state.movies ? this._renderMovies() : 'Loading...'}
       </div>
