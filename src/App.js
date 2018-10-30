@@ -5,15 +5,22 @@ import Movie from './Movie';
 class App extends Component {
 
   state = {}
-
+ 
   // 컴.디.마의 코드량 줄이는 효과
   componentDidMount() {
     this._getMovies();
   }
 
+  // 렌더링할 요소 선택해서 맵핑 후 리턴
   _renderMovies = () => {
     const movies = this.state.movies.map(movie => {
-      return <Movie title={movie.title} poster={movie.large_cover_image} key={movie.id}/> //movies 배열을 맵해서 새로운 컴포넌트를 만든다.
+      return <Movie 
+        title={movie.title_english} 
+        poster={movie.medium_cover_image} 
+        key={movie.id} 
+        genres={movie.genres}
+        synopsis={movie.synopsis} 
+      /> //movies 배열을 맵해서 새로운 컴포넌트를 만든다.
     })
     return movies
   }
@@ -34,10 +41,13 @@ class App extends Component {
   }
 
   render() {
+    const { movies } = this.state; 
     return (
-      <div className="App">
+
+      // 클래스 이름 분기해서 다른 css 적용하기
+      <div className={movies ? "App" : " App--loading"}>
         {/* movies 키값이 있냐? */}
-        {this.state.movies ? this._renderMovies() : 'Loading...'}
+        {movies ? this._renderMovies() : 'Loading...'}
       </div>
     );
   }
