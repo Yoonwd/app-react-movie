@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Yoonwd/app-react-movie/precache-manifest.7ce531a2659543df0a8bdba9211d1438.js"
+  "/app-react-movie/precache-manifest.65ea92648aba7c11dd0d9c4aa86a530c.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/Yoonwd/app-react-movie/index.html", {
+workbox.routing.registerNavigationRoute("/app-react-movie/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
